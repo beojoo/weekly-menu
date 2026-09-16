@@ -1,0 +1,16 @@
+.build/
+dist/
+work/
+.DS_Store
+._*
+*.zip
+*.app/
+*.jsonl
+*.log
+verification-events.json
+auth.json
+.env
+.env.*
+*.p12
+*.p8
+*.pem
