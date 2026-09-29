@@ -13,7 +13,9 @@ Codex의 남은 사용량을 표시하는 Swift / SwiftUI 네이티브 macOS 메
 
 ## 조회와 성능
 
-공식 OpenAI 서명을 확인한 로컬 Codex app-server 하나를 시작하여 표준 입출력 연결을 재사용합니다. 실행 중인 Codex 데스크톱과 기존 로그인 세션이 필요합니다. API 키 입력은 필요하지 않습니다.
+실행 중인 Codex 앱에서 공식 OpenAI 서명을 확인한 로컬 Codex app-server 하나를 시작하여 표준 입출력 연결을 재사용합니다. 실행 중인 Codex 데스크톱과 기존 로그인 세션이 필요합니다. API 키 입력은 필요하지 않습니다.
+
+Codex 2026년 9월 업데이트의 `Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`와 이전 `Contents/Resources/codex` 경로를 모두 지원합니다.
 
 허용하는 RPC는 `initialize`, `initialized`, `account/read` (`refreshToken: false`), `account/rateLimits/read`뿐입니다. 모델·프롬프트·inference·completion·Responses 요청이나 quota/credit 소비·구매·reset 메서드를 호출하지 않습니다. 사용량 조회 자체는 모델 사용량을 소비하지 않습니다. 같은 계정의 다른 작업으로 표시값이 줄어들 수 있습니다.
 

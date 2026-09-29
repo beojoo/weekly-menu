@@ -8,11 +8,26 @@ enum CodexTrust {
 
     static func validate(_ executable: URL) throws {
         let binary = executable.standardizedFileURL
-        let bundle = binary.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        guard bundle.pathExtension == "app",
-              binary.path == bundle.appendingPathComponent("Contents/Resources/codex").path,
-              binary.resolvingSymlinksInPath().path == binary.path else { throw UsageError.unavailable }
-        try check(bundle, identifier: "com.openai.codex")
+        guard binary.resolvingSymlinksInPath().path == binary.path else { throw UsageError.unavailable }
+
+        let oldApp = binary.deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+        if oldApp.pathExtension == "app",
+           binary.path == oldApp.appendingPathComponent("Contents/Resources/codex").path {
+            try check(oldApp, identifier: "com.openai.codex")
+        } else {
+            let cliApp = binary.deletingLastPathComponent().deletingLastPathComponent()
+                .deletingLastPathComponent()
+            let desktopApp = cliApp.deletingLastPathComponent().deletingLastPathComponent()
+                .deletingLastPathComponent().deletingLastPathComponent()
+            guard cliApp.lastPathComponent == "CodexCLI.app",
+                  desktopApp.pathExtension == "app",
+                  binary.path == desktopApp.appendingPathComponent(
+                    "Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex").path
+            else { throw UsageError.unavailable }
+            try check(desktopApp, identifier: "com.openai.codex")
+            try check(cliApp, identifier: "codex")
+        }
         try check(binary, identifier: "codex")
     }
 

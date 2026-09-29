@@ -146,8 +146,11 @@ final class MenuApp: NSObject, NSApplicationDelegate, NSPopoverDelegate {
     private func runningCodex() -> URL? {
         for app in NSWorkspace.shared.runningApplications {
             guard app.bundleIdentifier == "com.openai.codex", let bundle = app.bundleURL else { continue }
-            let path = bundle.appendingPathComponent("Contents/Resources/codex")
-            if FileManager.default.isExecutableFile(atPath: path.path) { return path }
+            for relativePath in ["Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+                                 "Contents/Resources/codex"] {
+                let path = bundle.appendingPathComponent(relativePath)
+                if FileManager.default.isExecutableFile(atPath: path.path) { return path }
+            }
         }
         return nil
     }
