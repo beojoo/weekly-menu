@@ -22,4 +22,4 @@ helper를 시작하기 직전에 macOS Security framework로 앱 번들과 실�
 
 배포 앱 자체는 ad-hoc 서명입니다. Developer ID 서명·공증 및 다른 Mac에서의 실행, 실제 재부팅 후 자동 실행은 별도 배포 검증이 필요합니다. 공개 패키지 검사는 과거에 별도로 업로드된 자료나 다른 저장소의 이력을 검사한 결과가 아닙니다.
 
-2026-09-30 검증: 새 경로의 공식 Codex 앱/실행 파일 서명 검증과 45개 테스트 통과. 실제 메뉴바에 Weekly 사용량과 reset 시간이 표시되었으며, 진단 이벤트는 `initialize`, `initialized`, `account/read`, `account/rateLimits/read`만 기록했습니다. 다른 Codex 작업이 동시에 실행 중이면 사용량 전후 비교로 조회 자체의 1% 미만 변화 여부까지 분리할 수는 없습니다.
+2026-09-30 검증: 새 경로의 공식 Codex 앱/실행 파일 서명 검증과 45개 테스트 통과. 실제 메뉴바에 Weekly 사용량과 reset 시간이 표시되었고 새 설치본의 `SMAppService.mainApp` 자동 실행 등록 상태가 `enabled`로 확인되었으며, 진단 이벤트는 `initialize`, `initialized`, `account/read`, `account/rateLimits/read`만 기록했습니다. 다른 Codex 작업이 동시에 실행 중이면 사용량 전후 비교로 조회 자체의 1% 미만 변화 여부까지 분리할 수는 없습니다.

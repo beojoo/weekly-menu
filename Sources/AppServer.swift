@@ -103,7 +103,7 @@ final class AppServer {
         _ = fcntl(input!.fileDescriptor, F_SETNOSIGPIPE, noSignal)
         audit.record("serverStart", ["childPID": child.processIdentifier])
         _ = try request(.initialize, params: [
-            "clientInfo": ["name": "weekly_menu", "title": "Weekly Menu", "version": "1.1.1"],
+            "clientInfo": ["name": "weekly_menu", "title": "Weekly Menu", "version": "1.1.2"],
             "capabilities": ["experimentalApi": false]
         ], deadline: deadline)
         try send(.initialized)

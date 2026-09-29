@@ -139,6 +139,16 @@ final class MenuApp: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         })
         updateDisplay()
         refresh(reason: "startup")
+        if CommandLine.arguments.contains("--register-login") {
+            do {
+                try SMAppService.mainApp.register()
+                state.loginStatus = SMAppService.mainApp.status
+                audit.record("loginRegistration", ["status": state.loginStatus.rawValue, "succeeded": true])
+            } catch {
+                state.loginStatus = SMAppService.mainApp.status
+                audit.record("loginRegistration", ["status": state.loginStatus.rawValue, "succeeded": false])
+            }
+        }
         audit.record("appStart", ["refreshIntervalSeconds": Self.refreshInterval,
                                  "loginStatus": SMAppService.mainApp.status.rawValue])
     }

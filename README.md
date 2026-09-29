@@ -32,7 +32,7 @@ Apple Silicon, macOS 13 이상, 빌드에는 Xcode Command Line Tools 또는 Xco
 ./scripts/build.sh
 ```
 
-결과는 `dist/Weekly Menu.app`, 임시 빌드 파일은 `.build/`에 생성됩니다. 앱을 Applications에 복사한 뒤 실행하고 메뉴에서 Launch at Login을 켭니다. macOS가 승인을 요구하면 시스템 설정에서 허용합니다. 자동 실행은 `SMAppService.mainApp`을 사용합니다.
+결과는 `dist/Weekly Menu.app`, 임시 빌드 파일은 `.build/`에 생성됩니다. 앱을 Applications에 복사한 뒤 실행하고 메뉴에서 Launch at Login을 켭니다. 기존 로그인 항목을 이전할 때는 `--register-login` 인수로 실행해 새 앱의 자동 실행을 등록할 수 있습니다. macOS가 승인을 요구하면 시스템 설정에서 허용합니다. 자동 실행은 `SMAppService.mainApp`을 사용합니다.
 
 이전 개인 빌드를 교체한다면 먼저 기존 앱에서 Launch at Login을 끄고 Quit한 뒤 교체하세요. 새 빌드는 일반화한 bundle ID를 사용하므로 새 앱에서 자동 실행을 다시 설정해야 합니다.
 
